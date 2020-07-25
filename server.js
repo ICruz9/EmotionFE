@@ -1,6 +1,7 @@
 //Install express server
 const express = require('express');
 const path = require('path');
+const { config } = require('process');
 const app = express();
  
 
@@ -11,6 +12,6 @@ app.get('/*', function(req,res) {
  
 res.sendFile(path.join(__dirname+'/angularapp/index.html'));
 });
- 
+config.force_ssl=false;
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
