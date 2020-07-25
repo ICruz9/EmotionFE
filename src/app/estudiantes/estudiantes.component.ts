@@ -7,6 +7,7 @@ import {
   EventEmitter,
   OnDestroy,
 } from "@angular/core";
+import swal from 'sweetalert2';
 import { Observable, Subject } from "rxjs";
 
 import { DataService } from "../data.service";
@@ -122,14 +123,14 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
   listaProfesores;
   grabacion = true;
   grabar = true;
-  nameuser = null;
+  nameuser = "jaff98";
   pass = null;
   nombreC = null;
   codigoC = null;
   creditosC = null;
   serverRes;
   carne = "0504200129";
-  numGrupo;
+  numGrupo="";
   idProfesor;
   idCurso;
   idEstudiante = 1;
@@ -187,11 +188,20 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
     console.log(value);
   }
   siguienteF() {
-    if (this.siguiente == true) {
-      this.siguiente = false;
-    } else {
-      this.siguiente = true;
+    if(this.numGrupo=="" || this.nombreC==""){
+      swal.fire(
+        'Error!',
+        'Espacios en blanco!',
+        'error'
+      );
+    }else{
+      if (this.siguiente == true) {
+        this.siguiente = false;
+      } else {
+        this.siguiente = true;
+      }
     }
+    
   }
   insertarCursos(listaCursosE) {
     for (let i in listaCursosE) {
@@ -234,6 +244,24 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
           this.serverRes = data;
           this.serverRes = this.serverRes.response;
           console.log(this.serverRes);
+          if("ok"==this.serverRes){
+            this.getCursos();
+            this.getProfesores();
+            this.getCursosEstudiante();
+            swal.fire(
+              'Perfecto!',
+              'Registrado con exito!',
+              'success'
+            );
+            this.changeView(0);
+          }else{
+            swal.fire(
+              'Error!',
+              'No se ha registrado!',
+              'error'
+            );
+          }
+
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
