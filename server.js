@@ -1,9 +1,11 @@
 //Install express server
 const express = require('express');
 const path = require('path');
- 
+ var enforce = require('express-sslify');
 const app = express();
  
+
+app.use(enforce.HTTPS({trustProtoHeader: false}))
 // Serve only the static files form the angularapp directory
 app.use(express.static(__dirname + '/angularapp'));
  
