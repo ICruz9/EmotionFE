@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, Output, EventEmitter, OnDestroy, ɵConsole} from '@angular/core';
 import{MatFormField} from '@angular/material/form-field'
 import { DataService } from '../data.service';
 import {Subscription} from 'rxjs';
@@ -32,7 +32,16 @@ export class RegistroComponent implements OnInit {
     var last_name = (<HTMLInputElement>document.getElementById("last_name")).value;
     var phone_number = (<HTMLInputElement>document.getElementById("phone_number")).value;
     //var rol = rol;
-    
+    if(this.rol=="Docente"){
+      this.rol='C';
+    }else{
+      if(this.rol=="Estudiante"){
+        this.rol='E';
+      }
+      else{
+        this.rol='P'
+      }
+    }
     this.user = {username: usr, 
       password: password, 
       identification: identification,
@@ -44,7 +53,6 @@ export class RegistroComponent implements OnInit {
     this.subscription.add(this.dataService.registrar(this.user).subscribe(
       data => {
         this.respuesta = data;
-        this.respuesta = this.respuesta.response
         console.log(this.respuesta)
       },
       (err: HttpErrorResponse) => {
