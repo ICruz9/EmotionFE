@@ -134,10 +134,11 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
   numGrupo;
   idProfesor;
   idCurso;
+  idCursoEm;
   idEstudiante =  localStorage.getItem('user_id');
   private curso;
   private emocionesEnviar;
-  private idCursoSel;
+  
   myDate = new Date();
   testDay: String;
   @Input() showResponse: Array<any>;
@@ -179,7 +180,7 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
       this.idCurso = value;
     });
     this.matCursoEmocion.valueChange.subscribe((value) => {
-      this.idCursoSel = value;
+      this.idCursoEm = value;
     });
   }
   misCursos = true;
@@ -256,6 +257,7 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
               'success'
             );
             this.changeView(0);
+            this.siguiente=false;
           }else{
             swal.fire(
               'Error!',
@@ -377,7 +379,7 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
                 this.emocionesEnviar = {
                   student_id: this.idEstudiante,
                   emotion: emotion,
-                  course_id: this.idCursoSel,
+                  course_id: this.idCursoEm,
                   fecha: this.testDay,
                 };
                 console.log("EMOCIONES", this.emocionesEnviar);
@@ -423,3 +425,4 @@ export interface cursos {
   creditos: number;
 }
 var ELEMENT_DATA: cursos[] = [];
+
