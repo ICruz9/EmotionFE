@@ -123,7 +123,8 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
   listaProfesores;
   grabacion = true;
   grabar = true;
-  nameuser = localStorage.getItem('nameuser');;
+  nameuser = localStorage.getItem('username');
+  
   pass = null;
   nombreC = null;
   codigoC = null;
@@ -133,7 +134,7 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
   numGrupo;
   idProfesor;
   idCurso;
-  idEstudiante = localStorage.getItem('user_id');;
+  idEstudiante =  localStorage.getItem('user_id');
   private curso;
   private emocionesEnviar;
   private idCursoSel;
@@ -160,6 +161,7 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
     this.getCursos();
     this.getProfesores();
     this.getCursosEstudiante();
+    console.log(localStorage)
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

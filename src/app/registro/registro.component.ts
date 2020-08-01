@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, Input, Output, EventEmitter, OnDestroy, ɵConsole} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
 import{MatFormField} from '@angular/material/form-field'
 import { DataService } from '../data.service';
 import {Subscription} from 'rxjs';
@@ -53,6 +53,7 @@ export class RegistroComponent implements OnInit {
     this.subscription.add(this.dataService.registrar(this.user).subscribe(
       data => {
         this.respuesta = data;
+        this.respuesta = this.respuesta.response
         console.log(this.respuesta)
       },
       (err: HttpErrorResponse) => {
