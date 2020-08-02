@@ -228,7 +228,7 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
             console.log("Error del lado del cliente");
           } else {
             console.log("Error del lado del servidor");
-          }R
+          }
         }
       )
     );
