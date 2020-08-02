@@ -121,6 +121,7 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
   listaCursosE;
   listaCursos;
   listaProfesores;
+  responseEmotion;
   grabacion = true;
   grabar = true;
   nameuser = localStorage.getItem('username');
@@ -389,9 +390,8 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
                     .subscribe(
                       ///aaa
                       (data) => {
-                        this.listaProfesores = data;
-                        this.listaProfesores = this.listaProfesores.response;
-                        console.log("Profesores", this.listaProfesores);
+                        this.responseEmotion = data;
+                        console.log("Emociones", this.responseEmotion);
                       },
                       (err: HttpErrorResponse) => {
                         if (err.error instanceof Error) {
