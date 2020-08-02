@@ -228,7 +228,7 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
             console.log("Error del lado del cliente");
           } else {
             console.log("Error del lado del servidor");
-          }
+          }R
         }
       )
     );
@@ -377,7 +377,7 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
             for (let emotion in emotions) {
               if (emotions[emotion] > 0.5) {
                 this.emocionesEnviar = {
-                  id_student: this.idEstudiante,
+                  student_id: this.idEstudiante,
                   emotion: emotion,
                   course_id: this.idCursoEm,
                   fecha: this.testDay,
