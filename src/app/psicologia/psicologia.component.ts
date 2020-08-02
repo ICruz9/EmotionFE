@@ -11,7 +11,7 @@ export interface PeriodicElement {
   fecha: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [];
+var ELEMENT_DATA: PeriodicElement[] = [];
 @Component({
   selector: 'app-psicologia',
   templateUrl: './psicologia.component.html',
@@ -44,6 +44,7 @@ export class PsicologiaComponent implements OnInit {
   }
 
   async getEmotions(){
+    ELEMENT_DATA=[];
     var id = (<HTMLInputElement>document.getElementById("search")).value;
     await this.subscription.add(this.dataService.getEmociones(id).subscribe(///aaa
       data => {
